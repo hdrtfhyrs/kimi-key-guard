@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><style>
+body{width:420px;margin:0;padding:12px;font:13px/1.5 system-ui,"Microsoft YaHei",sans-serif;color:#222}
+h1{font-size:16px;margin:0 0 8px}.card{border:1px solid #ddd;border-radius:7px;padding:9px;margin:9px 0}
+.mode{display:flex;gap:8px;align-items:center;padding:8px;background:#fff2cf;border-radius:6px}.mode.live{background:#e6f4e9}
+.muted{color:#666;font-size:12px}.bar{height:6px;background:#eee;margin:6px 0}.bar i{display:block;height:100%;background:#1677ff}
+button{margin:4px 5px 4px 0;padding:4px 8px}label.field{display:block;margin:7px 0}input[type=number]{width:90px}
+select{max-width:100%;width:100%;padding:4px}#error{color:#b00020;white-space:pre-wrap}#job{white-space:pre-wrap}
+#log{max-height:160px;overflow:auto;font-size:12px;border-top:1px solid #ddd;margin-top:8px;padding-top:7px}
+.hide{display:none}details{margin:9px 0}#evidenceStatus{word-break:break-all}.error{color:#b00020}.danger{color:#a61b1b;border:1px solid #c66;background:#fff4f4;border-radius:4px}.card{overflow-wrap:anywhere}
+</style></head><body>
+<h1>Kimi Key 守卫 <small id="version"></small></h1>
+<div class="muted">发现新ID自动登记，每key独立本机进程。实际发出后5小时，或归属可靠的累计100%先到。<b>先刷新真实页面、截图存D成功，再撤销精确key。</b></div>
+<label class="mode" id="modeBox"><input type="checkbox" id="dry"><span id="modeText"></span></label>
+<div class="card"><div id="job">等待程序状态</div><button id="cancel">取消当前操作并暂停删除</button></div>
+<div id="active"></div>
+<div class="card hide" id="candidateBox">
+  <b>补充交付记录（自动登记和观察已经运行）</b><select id="candidate"></select>
+  <div class="muted" id="observed"></div>
+  <label class="field">实际发出时间（北京时间）<br><input type="datetime-local" id="sentAt"></label>
+  <label class="field">发出时五小时频限已用 <input type="number" min="0" max="100" step="0.01" id="baseline"> %</label>
+  <label class="field"><input type="checkbox" id="exclusive" checked> 本笔使用期间独占账号配额</label>
+  <details><summary>这笔已跨额度窗口时填写</summary><label class="field"><input type="checkbox" id="crossedWindow"> 发出后已发生额度窗口重置</label><label class="field">本笔此前窗口已经用掉 <input type="number" min="0" step="0.01" value="0" id="carry"> %</label><div class="muted">只填这笔买家的此前耗用；已跨窗口时，当前窗口从0计，不再扣原发出起点。</div></details>
+  <div class="muted">这里补实际发出时间和起点，不是登记或启动开关。未知值留空，不以创建时刻冒充发出。多个key重叠时账号额度归属未知，各笔时间仍独立运行。已过5小时按时间先取证，不倒推累计。</div>
+  <button id="confirmLease">保存这枚key的交付记录</button>
+</div>
+<button id="enable">允许自动删除</button><button id="scan">立即发现新key</button><button id="check">刷新进程状态</button>
+<button id="evidence">保存当前页面截图</button>
+<div id="evidenceStatus" class="muted"></div><div id="error"></div>
+<details id="historyDetails"><summary>已结束的历史单</summary><div id="history"></div></details>
+<div id="log"></div><script type="module" src="popup.js"></script>
+</body></html>

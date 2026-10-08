@@ -1,0 +1,12 @@
+guard-settings.json
+native-host.json
+evidence-host.cmd
+current-lease.json
+__pycache__/
+*.pyc
+*.sqlite3*
+*.log
+data/
+leases/
+screenshots/
+install-backups/

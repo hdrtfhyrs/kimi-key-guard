@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Kimi Key 守卫",
+  "version": "2.0.2",
+  "minimum_chrome_version": "120",
+  "description": "发现新ID自动登记；每key独立本机进程、监督恢复；先真实截图存D再精确撤销",
+  "permissions": ["alarms", "storage", "scripting", "tabs", "activeTab", "nativeMessaging"],
+  "host_permissions": ["https://www.kimi.com/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "Kimi Key 守卫" }
+}
